@@ -1,0 +1,32 @@
+const {resolve,join} = require("path");
+module.exports={
+    entry:"./src/index.ts",
+    output:{
+        path:resolve(__dirname,"./build"),
+        filename:"bundle.js"
+    },
+    module:{
+        rules:[
+            {
+                test:/\.ts$/,
+                use:[
+                    "ts-loader"
+                ]
+            }
+        ]
+    },
+    devServer:{
+        contentBase:join(__dirname,"www"),
+        compress:false,
+        port:8080,
+        publicPath:"/xuni/"
+    },
+    resolve:{
+        alias:{
+            "@":resolve(__dirname,"./src"),
+            "@utils":resolve(__dirname,"./utils")
+        },
+        extensions:[".ts",".tsx",".js"]
+    },
+    mode:"development"
+}
